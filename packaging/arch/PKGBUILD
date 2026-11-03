@@ -1,0 +1,29 @@
+# Maintainer: hendy643 <phenderson643@gmail.com>
+pkgname=rabbitvcs-dolphin
+pkgver=0.1
+pkgrel=1
+pkgdesc='RabbitVCS Git and Subversion integration for the Dolphin file manager'
+arch=(x86_64 aarch64)
+url='https://github.com/hendy643/rabbitvcs-dolphin'
+license=(GPL-2.0-or-later)
+depends=(dolphin kio qt6-base rabbitvcs-cli)
+makedepends=(cmake extra-cmake-modules git)
+source=("$pkgname-$pkgver.tar.gz::$url/archive/v$pkgver.tar.gz")
+sha256sums=('SKIP') # replace with the real sum (updpkgsums) once the v$pkgver tag exists
+
+build() {
+  cmake -S "$pkgname-$pkgver" -B build \
+    -DCMAKE_BUILD_TYPE=None \
+    -DCMAKE_INSTALL_PREFIX=/usr \
+    -DKDE_INSTALL_USE_QT_SYS_PATHS=ON
+  cmake --build build
+}
+
+check() {
+  ctest --test-dir build --output-on-failure
+}
+
+package() {
+  DESTDIR="$pkgdir" cmake --install build
+  install -Dm644 "$pkgname-$pkgver/COPYING" "$pkgdir/usr/share/licenses/$pkgname/COPYING"
+}

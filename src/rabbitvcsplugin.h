@@ -61,7 +61,7 @@ private:
     QHash<QString, ItemVersion> m_status;
     QMenu m_menu;
     QList<QAction *> m_actions;
-    QList<ActionDef> m_actionDefs;
+    const ActionDef *m_actionDefs;
     mutable KFileItemList m_contextItems;
 };
 

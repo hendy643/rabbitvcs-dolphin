@@ -2,11 +2,11 @@
 # Remove the RabbitVCS Dolphin VCS plugins installed by install.sh.
 set -eu
 
-cd "$(dirname "$0")"
+cd "$(dirname "$0")/.."
 
 MANIFEST="build/install_manifest.txt"
 if [ ! -f "$MANIFEST" ]; then
-    echo "No $MANIFEST found; run ./install.sh first." >&2
+    echo "No $MANIFEST found; run ./scripts/install.sh first." >&2
     exit 1
 fi
 

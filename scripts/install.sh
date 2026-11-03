@@ -2,12 +2,12 @@
 # Build and install the RabbitVCS Dolphin VCS plugins.
 set -eu
 
-cd "$(dirname "$0")"
+cd "$(dirname "$0")/.."
 
 PREFIX="${PREFIX:-/usr}"
 export PREFIX
 
-./build.sh
+./scripts/build.sh
 
 # Find the nearest existing directory to decide whether sudo is needed.
 target="$PREFIX"

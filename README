@@ -20,17 +20,17 @@ Requirements
 Build and install
 -----------------
 
-    ./build.sh
-    ./install.sh
+    ./scripts/build.sh
+    ./scripts/install.sh
 
 Both use /usr as the installation prefix by default. Override it with the
 PREFIX environment variable, for example:
 
-    PREFIX=$HOME/.local ./install.sh
+    PREFIX=$HOME/.local ./scripts/install.sh
 
 Remove the installed files with:
 
-    ./uninstall.sh
+    ./scripts/uninstall.sh
 
 The plugins are installed into <prefix>/lib/qt6/plugins/dolphin/vcs on a
 system prefix; a private prefix is supported as well, in which case Qt needs

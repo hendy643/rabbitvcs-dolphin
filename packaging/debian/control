@@ -1,0 +1,24 @@
+Source: rabbitvcs-dolphin
+Section: kde
+Priority: optional
+Maintainer: hendy643 <phenderson643@gmail.com>
+Build-Depends: debhelper-compat (= 13),
+               cmake (>= 3.20),
+               extra-cmake-modules (>= 6.0),
+               git,
+               libdolphinvcs-dev,
+               libkf6coreaddons-dev,
+               libkf6kio-dev,
+               qt6-base-dev,
+Standards-Version: 4.6.2
+Rules-Requires-Root: no
+
+Package: rabbitvcs-dolphin
+Architecture: any
+Depends: dolphin, ${misc:Depends}, ${shlibs:Depends}
+Recommends: rabbitvcs-cli
+Description: RabbitVCS integration for the Dolphin file manager
+ Dolphin version-control plugins for Git and Subversion. They show the
+ status of files as overlays and add a RabbitVCS submenu to the context
+ menu. Status is read with the native git/svn tools; the menu actions
+ start the rabbitvcs command line client.

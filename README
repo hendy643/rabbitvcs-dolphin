@@ -12,9 +12,20 @@ the RabbitVCS runtime installed on the system.
 Requirements
 ------------
 
-    * Dolphin / KIO 6, Qt 6 and their development files
-    * Extra CMake Modules (ECM), KF6CoreAddons and KF6KIO
-    * the RabbitVCS Python package and a `rabbitvcs` launcher in PATH
+    * Dolphin 6 (with its libdolphinvcs development files), KIO 6 and Qt 6
+    * CMake 3.20+, Extra CMake Modules (ECM), KF6CoreAddons and KF6KIO
+    * the RabbitVCS runtime (the `rabbitvcs` command, e.g. the
+      `rabbitvcs-cli` package) in PATH
+    * `git` and/or `svn` for the status overlays; `git` is also needed to
+      run the tests
+
+
+Package install
+---------------
+
+Packaging recipes live in packaging/ (Ubuntu 26.04, Fedora, Arch Linux; see
+packaging/README.md). Ubuntu 24.04 is not supported: it has no KDE
+Frameworks 6.
 
 
 Build and install
@@ -35,6 +46,32 @@ Remove the installed files with:
 The plugins are installed into <prefix>/lib/qt6/plugins/dolphin/vcs on a
 system prefix; a private prefix is supported as well, in which case Qt needs
 to find it through QT_PLUGIN_PATH.
+
+
+Development
+-----------
+
+CMake presets are provided (see CMakePresets.json):
+
+    cmake --workflow --preset test       # debug build and unit tests
+    cmake --workflow --preset release    # release build
+    cmake --workflow --preset package-deb    # release build + .deb (CPack)
+    cmake --workflow --preset package-rpm    # release build + .rpm (CPack)
+
+The CPack packages are written to build/. They use the install layout of the
+machine that builds them (Debian multiarch lib dirs, Fedora lib64), so build
+the .deb on Debian/Ubuntu and the .rpm on Fedora.
+
+Layout:
+
+    src/        plugin code and the two plugin metadata files
+    tests/      Qt Test unit tests
+    scripts/    build / install / uninstall helpers
+    packaging/  distribution packaging recipes
+
+CI (.github/workflows/ci.yml) runs the test and release workflows, and builds
+the .deb (Ubuntu 26.04) and .rpm (Fedora) as downloadable artifacts, on every
+push and pull request.
 
 
 Enable in Dolphin

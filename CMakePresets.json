@@ -12,7 +12,8 @@
             "binaryDir": "${sourceDir}/build",
             "cacheVariables": {
                 "CMAKE_BUILD_TYPE": "Release",
-                "CMAKE_INSTALL_PREFIX": "/usr"
+                "CMAKE_INSTALL_PREFIX": "/usr",
+                "KDE_INSTALL_USE_QT_SYS_PATHS": "ON"
             }
         },
         {
@@ -83,6 +84,58 @@
                     "type": "build",
                     "name": "release"
                 }
+            ]
+        },
+        {
+            "name": "package-deb",
+            "displayName": "DEB package",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "release"
+                },
+                {
+                    "type": "build",
+                    "name": "release"
+                },
+                {
+                    "type": "package",
+                    "name": "deb"
+                }
+            ]
+        },
+        {
+            "name": "package-rpm",
+            "displayName": "RPM package",
+            "steps": [
+                {
+                    "type": "configure",
+                    "name": "release"
+                },
+                {
+                    "type": "build",
+                    "name": "release"
+                },
+                {
+                    "type": "package",
+                    "name": "rpm"
+                }
+            ]
+        }
+    ],
+    "packagePresets": [
+        {
+            "name": "deb",
+            "configurePreset": "release",
+            "generators": [
+                "DEB"
+            ]
+        },
+        {
+            "name": "rpm",
+            "configurePreset": "release",
+            "generators": [
+                "RPM"
             ]
         }
     ]

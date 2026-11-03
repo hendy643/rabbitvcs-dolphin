@@ -30,3 +30,25 @@ if(BUILD_TESTING)
     find_package(Qt6 REQUIRED COMPONENTS Test)
     add_subdirectory(tests)
 endif()
+
+# Packaging: `cpack -G DEB` / `cpack -G RPM` (see the package-* workflow presets).
+# The install layout follows the build host, so build each package on its target family.
+set(CPACK_PACKAGE_NAME rabbitvcs-dolphin)
+set(CPACK_PACKAGE_VENDOR "RabbitVCS contributors")
+set(CPACK_PACKAGE_CONTACT "hendy643 <phenderson643@gmail.com>")
+set(CPACK_PACKAGE_DESCRIPTION_SUMMARY "RabbitVCS integration for the Dolphin file manager")
+set(CPACK_PACKAGE_HOMEPAGE_URL "https://github.com/hendy643/rabbitvcs-dolphin")
+set(CPACK_RESOURCE_FILE_LICENSE "${CMAKE_SOURCE_DIR}/COPYING")
+
+set(CPACK_DEBIAN_PACKAGE_SECTION kde)
+set(CPACK_DEBIAN_PACKAGE_SHLIBDEPS ON)
+set(CPACK_DEBIAN_PACKAGE_DEPENDS dolphin)
+set(CPACK_DEBIAN_PACKAGE_RECOMMENDS rabbitvcs-cli)
+set(CPACK_DEBIAN_FILE_NAME DEB-DEFAULT)
+
+set(CPACK_RPM_PACKAGE_LICENSE "GPL-2.0-or-later")
+set(CPACK_RPM_PACKAGE_REQUIRES dolphin)
+set(CPACK_RPM_PACKAGE_SUGGESTS rabbitvcs)
+set(CPACK_RPM_FILE_NAME RPM-DEFAULT)
+
+include(CPack)

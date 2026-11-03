@@ -1,0 +1,13 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "RabbitVCS contributors"
+            }
+        ],
+        "Description": "Git integration using RabbitVCS",
+        "Icon": "rabbitvcs",
+        "License": "GPL-2.0-or-later",
+        "Name": "RabbitVCS Git"
+    }
+}

@@ -1,0 +1,56 @@
+RabbitVCS Dolphin VCS plugin
+============================
+
+Native Dolphin version-control plugin that integrates RabbitVCS into
+Dolphin. It shows the Git/Subversion status of files and adds a
+"RabbitVCS Git" / "RabbitVCS SVN" submenu to Dolphin's context menu.
+
+This project is independent of the RabbitVCS source tree; it only needs
+the RabbitVCS runtime installed on the system.
+
+
+Requirements
+------------
+
+    * Dolphin / KIO 6, Qt 6 and their development files
+    * Extra CMake Modules (ECM), KF6CoreAddons and KF6KIO
+    * the RabbitVCS Python package and a `rabbitvcs` launcher in PATH
+
+
+Build and install
+-----------------
+
+    ./build.sh
+    ./install.sh
+
+Both use /usr as the installation prefix by default. Override it with the
+PREFIX environment variable, for example:
+
+    PREFIX=$HOME/.local ./install.sh
+
+Remove the installed files with:
+
+    ./uninstall.sh
+
+The plugins are installed into <prefix>/lib/qt6/plugins/dolphin/vcs on a
+system prefix; a private prefix is supported as well, in which case Qt needs
+to find it through QT_PLUGIN_PATH.
+
+
+Enable in Dolphin
+-----------------
+
+    Settings -> Configure Dolphin... -> Context Menu
+
+Tick "RabbitVCS Git" and/or "RabbitVCS SVN". New version-control plugins are
+disabled by default.
+
+Do not enable the stock "Git" or "Subversion" plugin at the same time:
+Dolphin picks the first enabled plugin whose marker file (.git / .svn)
+matches, so two plugins for the same VCS would compete with each other.
+
+
+License
+-------
+
+GPL-2.0-or-later. See COPYING.
